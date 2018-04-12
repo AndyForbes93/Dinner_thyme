@@ -1,3 +1,7 @@
+        
+        // TODO: Document ready
+        // Config firebase
+        //add searchbar validation input
         var search;
         $("#submit").on("click",function test() {
 
@@ -56,7 +60,6 @@
                     console.log(response.hits[0]);
 
                 });
-
             });
-
+            
         });
