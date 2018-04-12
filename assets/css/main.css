@@ -1,6 +1,8 @@
 .jumbotron{
     margin-top: 40px;
-    height: 400px;
+    height: 450px;
     background-image: url("https://www.budgetbytes.com/wp-content/uploads/2018/01/Sheet-Pan-BBQ-Meatloaf-Dinner-plate.jpg");
-    background-size: auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position-y: -150px;
 }
