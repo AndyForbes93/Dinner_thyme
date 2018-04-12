@@ -1,1 +1,3 @@
-var test= "";
+$(document).ready(function() {
+    $('.modal').modal();
+     });
