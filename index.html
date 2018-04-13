@@ -6,17 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dinner-Thyme</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
+ <!--
    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> link to jQuery library -->
-<script src="assets/javascript/app.js"></script> <!-- Connected USER javascript file -->
 =======
     <title>Dinner Thyme</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+=======
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>-->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> link to jQuery library -->
+    <script src="assets/javascript/app.js"></script>
+  -->
     <!--link for font-->
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <!-- Compiled and minified CSS -->
@@ -27,10 +37,18 @@
     <link rel="SHORTCUT ICON" href="assets/images/plates.jpg" type="image/x-icon" />
     <!--link to stylesheet-->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/main.css" />
-  <!--------------------------------------------------------------------------------------------------------------------- -->
+    <!--------------------------------------------------------------------------------------------------------------------- -->
     <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Gaegu" rel="stylesheet">
+            
+            <!-- modal links
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" /> <!-- Bootstrap 4 CDN !YOU NEED THIS ONE! -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css" /> <!-- Connected USER css file --
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css" /> <!-- Connected USER css file -->
+=======
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />-->
+    <!-- Bootstrap 4 CDN !YOU NEED THIS ONE! -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css" />
+  -->
+
 </head>
 
 <body>
@@ -77,109 +95,110 @@
                 <div class="col s10 m10">
                     <div class="row hoverable">
 
-                        <h2 class="header">Recipe Name</h2>
+                        <h2 class="header" id="recipe-name">Recipe Name</h2>
                         <div class="card horizontal">
                             <div class="card-image">
-                                <img src="https://lorempixel.com/100/190/nature/6">
+                                <img id="recipe-image" src="#">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-content">
-                                    <p id="ingredientList">This will be the ingredients for the recipe.</p>
+                                    <p id="ingredientList">
+                                        <span id="ingredient-title">Ingredients needed: </span>
+                                    </p>
                                 </div>
                                 <div class="card-action">
-                                    <a class="waves-effect waves-light btn view" data-target="modal1">View Nutrition</a>
-                                    <!-- Modal Structure -->
-                                    <div id="modal1" class="modal">
+                                    
+                                    <!-- Trigger/Open The Modal -->
+                                    <button class="button waves-effect waves-light" id="myBtn">View Nutrition</button>
+
+                                    <!-- The Modal -->
+                                    <div id="myModal" class="modal">
+
+                                        <!-- Modal content -->
                                         <div class="modal-content">
-                                            <h4>Modal Header</h4>
-                                            <p>A bunch of text</p>
+                                            <div class="row">
+                                                <div class="col s6 m6" id="ingredient-list"></div>
+                                                <div class="col s6 m6" id="nutrition-list"></div>
+                                            </div>
+                                            <span class="close">&times;</span>
                                         </div>
-                                        <div class="modal-footer">
-                                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                                        </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
+
     </div>
-  <!-- ======================================================= BEGINNING TREY'S HTML ========================================== -->
-    <!-- If container class, put it @ #add-here -->
-<div id="add-here"></div>
-<!-- Beginning of Main Content Cards -->
-<div class="row" id="row1">
-    <button id="press-me">push me !!!</button>
+    </div>
+    <!-- ======================================================= BEGINNING TREY'S HTML ========================================== -->
 
-    <!-- --------------------------------- OUTLINE ----------------------------------------------
-    <div id="clear1" class="card text-white bg-info mb-3 col-lg-4 tw-each-card">
-        <div class="card-body row tw-card-top">
-            <img class="tw-food-pic col-lg-4" src="assets/images/hamburger.jpg">
+    <!-- Button trigger modal -->
+    <!--
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
 
-            <h3 class="tw-h3-card col-lg-6">Hamburger</h3>
-        </div>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
 
-        <div class="card-body">
-            <h5 class="card-title tw-card-bottom">Ingredients:</h5>
-            <ul class="tw-p-card">
-                <li>Big Potato</li>
-                <li>Small Carrot</li>
-                <li>ham</li>
-                <li>spinach</li>
-            </ul>
-        </div>
-    </div> ----------------------------------------------------------------------------------- -->
-    <div class="row" id="row2"></div>
-</div>
+                <div class="modal-header tw-line">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Hamburgers</h5>
 
-<!-- Button trigger modal -->
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+
+<!--modal starts here-->
+
+
+<div id="modal-here"></div>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
             <div class="modal-header tw-line">
-                <h5 class="modal-title" id="exampleModalLongTitle">Hamburgers</h5>
+                <h5 class="modal-title" >Hamburgers</h5>
+                <!-- id="exampleModalLongTitle" -->
+=======
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <div class="row modal-body justify-content-center">
+
+
+                    <img class="tw-modal-pic " src="assets/images/hamburger.jpg">
+                </div>
+
+
+                <div class="modal-body">
+                    <ul class="tw-line tw-line-2">
+                        <li>stuff 100 cal.</li>
+                        <li>stuff 700 cal. </li>
+                        <li>carrots 48888 cal.</li>
+                        <li>stuff 0 cal.</li>
+                        <li>stuff -5 cal.</li>
+                    </ul>
+                </div>
+
+                <div class="modal-body">
+                    <p>The recipe will go here for the description of how to cook it and stuff. lorem ipsum amit some words.
+                    </p>
+                </div>
+
+                <div class="tw-line-2 tw-padding">
+                    <button style="float:right" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
             </div>
 
-            <div class="row modal-body justify-content-center">
-
-                <img class="tw-modal-pic " src="assets/images/hamburger.jpg">
-            </div>
-
-
-            <div class="modal-body">
-                <ul class="tw-line tw-line-2">
-                    <li>stuff 100 cal.</li>
-                    <li>stuff 700 cal. </li>
-                    <li>carrots 48888 cal.</li>
-                    <li>stuff 0 cal.</li>
-                    <li>stuff -5 cal.</li>
-                </ul>
-            </div>
-
-            <div class="modal-body">
-                <p>The recipe will go here for the description of how to cook it and stuff. lorem ipsum amit some words.
-                </p>
-            </div>
-
-            <div class="tw-line-2 tw-padding">
-                <button style="float:right" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-            </div>
         </div>
-
-    </div>
-</div>
+    </div>   -->
 
 
     <!-- Compiled and minified JavaScript -->
@@ -190,6 +209,8 @@
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <!--link to javascript file-->
     <script src="assets/javascript/main.js"></script>
+    <!-- Connected Trey javascript file -->
+    <script src="assets/javascript/app.js"></script> 
 </body>
 
 </html>
