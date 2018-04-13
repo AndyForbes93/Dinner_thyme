@@ -75,7 +75,7 @@
                     url: nutritionURL,
                     method: "GET"
                 }).then(function (response) {
-                    //console.log(response.hits[0]);
+                    console.log(response);
                 });
             });
         });
