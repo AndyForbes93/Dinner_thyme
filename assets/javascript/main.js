@@ -31,15 +31,16 @@
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
-                let recipeCount = response.count = 5;
+                let recipeCount = response.count;
                 var obj = jQuery.parseJSON(response);
                 //console.log(obj);
                 for (i = 0; i < obj.recipes.length; i++) {
-                    //  console.log(obj.recipes[i].title);
+                     //console.log(obj.recipes[i].title);
                     //  console.log(obj.recipes[i].recipe_id);
                     recipeIdArray.push(obj.recipes[i].recipe_id);
                     $("#recipes").append(obj.recipes[i].title + "<br>");
                     $("#recipes").append("<ul><li><a href='#'>"+obj.recipes[i].title+"</a></li></ul>");
+
                 }
 
                 //console.log("recipeIdArray:" + recipeIdArray);
@@ -54,16 +55,17 @@
                 beforeSend: function (xhr) { xhr.setRequestHeader("X-Mashape-Key", "17STlxvDu0mshiHdSIFa7pNut86Vp1EqzzvjsngIg9bGERUjDu"); },
             }).then(function (newresponse) {
                 var obj = jQuery.parseJSON(newresponse);
-                console.log(obj.recipe.ingredients);
-                //console.log("ingredient:" + obj.recipe.ingredients);
-                var str = "" + obj.recipe.ingredients;
 
-                items = str.split(",");
-               for(i=0;i<items.length;i++){
-                $(".ingredients").append("<ul><li><a href='#'>"+items[i]+"</a></li></ul>");
-               } 
-                    
-               //console.log(items);
+               let ingredientArr = obj.recipe.ingredients;
+                
+              for(var i = 0; i < ingredientArr.length; i++) {
+                  let list = $("<ul>");
+                  let listItem = $("<li>");
+                  $(list).append(listItem);
+                  listItem.text(ingredientArr[i]);
+                  $("#ingredientList").append(list);
+              }
+          
 
             }).then(function (nutrition) {
                 var nutritionURL = "https://api.nutritionix.com/v1_1/search/"+items[18]+"?&appId=f35ae0d0&appKey=80cac78d0905b2d36ca8825470f578d7&fields=item_name,nf_calories";
