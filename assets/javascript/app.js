@@ -1,5 +1,27 @@
 //======================================== BEGINNING TREY'S JAVASCRIPT ============================================================
-//-------------------------------------------- BEGGINNING OF CARDS ----------------------------------------------------------------
+//-------------------------------------- WHAT THE STRUCTURE WILL LOOK LIKE ------------------------------------------------------
+//    <div id="#add-here"></div>
+
+//    <div id="row1"></div>------------------------------->
+//    <div id="row2"></div>-------------------------------> these two rows get populated and
+
+//   <div class="card text-white bg-info mb-3 col-lg-4 tw-each-card"></div> -------------1. appended to (#add-here)
+//         <div class="card-body row tw-card-top"> --------------------------------------2. twInnerDiv1 to be appended to twNewDiv 
+//         <img class="tw-food-pic col-lg-4" src="assets/images/hamburger.jpg">----------3. twNewImg to be appended to twInnerDiv1 
+//         
+//              <h3 class="tw-h3-card col-lg-6">Hamburger</h3>---------------------------4. twNewh3 to be appended to twNewImg
+//          </div>
+//          <div class="card-body tw-card-bottom">---------------------------------------5. twDiv2 to be appended to twNewh3
+//              <h5 class="card-title">Ingredients:</h5> --------------------------------6. twNewh5 to be appended to twDiv2
+//                  <ul class="tw-p-card">      -----------------------------------------7. twNewIngredients to be appended to twNewh5
+//                      <li>Big Potato</li> ---------------------------------------------8. twList[j] or twListItem to be appended to twNewIngredients
+//                      <li>Small Carrot</li>
+//                      <li>ham</li>
+//                      <li>spinach</li>
+//                  </ul>
+//          </div >
+//  </div >
+//-------------------------------------------- BEGGINNING OF CARD JS ---------------------------------------------------------------
 //declare variables
 let twNewRow, twNewDiv, twInnerDiv1, twNewImg, twNewh3, twDiv2, twNewh5, twNewIngredients, twListItem;
 let twList = ['carrots', 'peas', 'steak', 'tomatoes']; // <----------- ingredients could all (as needed) be pushed into this array 
@@ -82,30 +104,168 @@ function clearIt(){
 // }
 // --      --  --  --      --
 
-// ------------------------------------- WHAT THE STRUCTURE WILL LOOK LIKE ------------------------------------------------------
-//    <div id="#add-here"></div>
-
-//    <div id="row1"></div>------------------------------->
-//    <div id="row2"></div>-------------------------------> these two rows get populated and
-
-//   <div class="card text-white bg-info mb-3 col-lg-4 tw-each-card"></div> -------------1. appended to (#add-here)
-//         <div class="card-body row tw-card-top"> --------------------------------------2. twInnerDiv1 to be appended to twNewDiv 
-//         <img class="tw-food-pic col-lg-4" src="assets/images/hamburger.jpg">----------3. twNewImg to be appended to twInnerDiv1 
-//         
-//              <h3 class="tw-h3-card col-lg-6">Hamburger</h3>---------------------------4. twNewh3 to be appended to twNewImg
-//          </div>
-//          <div class="card-body tw-card-bottom">---------------------------------------5. twDiv2 to be appended to twNewh3
-//              <h5 class="card-title">Ingredients:</h5> --------------------------------6. twNewh5 to be appended to twDiv2
-//                  <ul class="tw-p-card">      -----------------------------------------7. twNewIngredients to be appended to twNewh5
-//                      <li>Big Potato</li> ---------------------------------------------8. twList[j] or twListItem to be appended to twNewIngredients
-//                      <li>Small Carrot</li>
-//                      <li>ham</li>
-//                      <li>spinach</li>
-//                  </ul>
-//          </div >
-//  </div >
-
-//------------------------------------------- END OF CARDS JS ----------------------------------------------------------------------
 
 
+//----------------------------------------------- END OF CARDS JS ------------------------------------------------------------------
+//------------------------------------------ BEGINNING OF MODAL MODLE --------------------------------------------------------------
+
+// <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+
+// <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"> <-------- mOutDiv1
+//     <div class="modal-dialog modal-lg"> <--------------------------- mOutDiv2
+//         <div class="modal-content"> <------------------------------ mOutDiv3
+
+//             <div class="modal-header tw-line"> <------------------- mInnerDiv1
+//                 <h5 class="modal-title" id="exampleModalLongTitle">Hamburgers</h5> <-------------------- mh5
+
+//                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <-------------------- mButton4
+//                     <span aria-hidden="true">&times;</span> <----------------- mSpan1
+//                 </button>
+//             </div>
+//------------------------------------------------------ break -------------------------------------------------------------------------
+//             <div class="row modal-body justify-content-center"> <-------------- mInnerDiv2
+
+//                 <img class="tw-modal-pic " src="assets/images/hamburger.jpg"> <-------------------------- mImg
+//             </div>
+
+
+//             <div class="modal-body"> <---------------------------------------- mInnerDiv3
+//                 <ul class="tw-line tw-line-2"> <------------------------------mUl
+//                     <li>stuff 100 cal.</li> <---------------------------------mLiArr
+//                     <li>stuff 700 cal. </li>
+//                     <li>carrots 48888 cal.</li>
+//                     <li>stuff 0 cal.</li>
+//                     <li>stuff -5 cal.</li>
+//                 </ul>
+//             </div>
+
+//             <div class="modal-body"> <------------------------------ mDivInner4
+//                 <p>The recipe will go here for the description of how to cook it and stuff. lorem ipsum amit some words.
+//                 </p> < --------------------------------------- mP1
+//             </div>
+
+//             <div class="tw-line-2 tw-padding"> <----------------------------------- mDivInner5
+//                 <button style="float:right" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+//             </div>
+//         </div>
+//     </div>
+// </div>
+
+//------------------------------------------ BEGINNING OF MODAL JS ------------------------------------------------------------------
+let mOutDiv1, mOutDiv2, mOutDiv3, mInnerDiv1, mh5, mButton4, mSpan1, mInnerDiv2, mImg, mInnerDiv3, mUl, mListItem, mDivInner4, mP1, mDivInner5;
+let mLiArr = ['lamb', 'corn', 'toungue', 'dog-meat', 'cat-food'];
+let mLiArr2 = [];
+
+
+mOutDiv1 = $('<div>').addClass('modal fade bd-example-modal-lg');
+mOutDiv1.attr('tabindex', '-1');
+mOutDiv1.attr('role', 'dialog');
+mOutDiv1.attr('aria-labelledby', 'myLargeModalLabel');
+mOutDiv1.attr('aria-hidden', 'true');
+console.log(mOutDiv1);
+
+
+mOutDiv2 = $('<div>').addClass('modal-dialog modal-lg');
+mOutDiv1.append(mOutDiv2);
+console.log(mOutDiv2);
+
+
+mOutDiv3 = $('<div>').addClass('modal-content');
+mOutDiv2.append(mOutDiv3);
+console.log(mOutDiv3);
+
+
+mInnerDiv1 = $('<div>').addClass('modal-header tw-line');
+mOutDiv3.append(mInnerDiv1);
+console.log(mInnerDiv1);
+
+
+mh5 = $('<h5>').addClass('modal-title');
+mInnerDiv1.append(mh5);
+$(mh5).html("Baked Chicken"); // <------------- This is where the name of the dish should appear in the modal
+console.log(mh5);
+console.log(mh5.html);
+
+
+mButton4 = $('<button>').addClass('close');
+mButton4.attr('type', 'button');
+mButton4.attr('data-dismiss', 'modal');
+mButton4.attr('aria-label', 'Close');
+mh5.append(mButton4);
+console.log(mButton4);
+
+
+mSpan1 = $('<span>').attr('type', 'button');
+mButton4.append(mSpan1);
+console.log(mSpan1);
+
+
+mInnerDiv2 = $('<div>').addClass('row modal-body justify-content-center');
+mSpan1.append(mInnerDiv2);
+console.log(mInnerDiv2);
+
+
+
+mImg = $('<img>').attr('src', 'assets/images/hamburger.jpg');
+mImg.addClass('tw-modal-pic');
+mInnerDiv2.append(mImg);
+console.log(mImg);
+
+
+mInnerDiv3 = $('<div>').addClass('modal-body');
+mImg.append(mInnerDiv3);
+console.log(mInnerDiv3);
+
+
+mUl = $('<ul>').addClass('tw-line tw-line-2');
+mInnerDiv3.append(mUl);
+console.log(mUl);
+
+
+for(i=0; i<mLiArr.length; i++) { // 
+    mListItem = $('<li>'); // <---------------- this will be based on the number of ingredents involved [i]
+    $(mListItem).html(mLiArr[i]); // <---------------- This is where the ingredients will go in
+    twNewIngredients.append(mListItem);
+    }
+
+    
+mDivInner4 = $('<div>').addClass('modal-body');
+mLiArr.append(mDivInner4);
+console.log(mDivInner4);
+
+mP1 = $('<p>');
+$(mP1).html('here is the paragraph of stuff');
+mDivInner4.append(p);
+console.log(p);
+
+mDivInner5 = $('<div>').addClass('tw-line-2 tw-padding');
+mLiArr.append(mDivInner5);
+console.log(mDivInner5);
+
+
+
+
+console.log(mSpan1);
+
+mOutDiv3.append(mButton4);
+
+
+mOutDiv1.append();
+
+
+// $'#modal-here').prepend(mOutDiv1);
+
+// button3 = $('<button>').addClass('btn btn-primary');
+// button3.attr('data-toggle', 'modal');
+// button3.attr('type', 'button');
+// button3.attr('data-target', '.bd-example-modal-lg');
+// button3.html('this and that');
+
+
+// mOutDiv1 = $('<div>').addClass('card text-white tw-new-colour mb-3 col-lg-4 tw-each-card');
+
+
+
+
+//-------------------------------------------- END OF MODAL ------------------------------------------------------------------------
 //======================================== END TREY'S JAVASCRIPT ==================================================================
