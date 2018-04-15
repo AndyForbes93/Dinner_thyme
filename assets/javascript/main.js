@@ -54,7 +54,6 @@ $(document).ready(function () {
         });
 
             var url = "https://cors-anywhere.herokuapp.com/https://community-food2fork.p.mashape.com/get?key=2faf058c37cad76f25dc0f61a8700b82&rId=5cc4a8";
-=======
             console.log(obj);
 
             for (i = 0; i < 5; i++) {
@@ -85,7 +84,7 @@ $(document).ready(function () {
             method: "GET",
 
             beforeSend: function (xhr) { xhr.setRequestHeader("X-Mashape-Key", "17STlxvDu0mshiHdSIFa7pNut86Vp1EqzzvjsngIg9bGERUjDu"); },
-=======
+
             
            
 
@@ -95,7 +94,7 @@ $(document).ready(function () {
             let ingredientArr = obj.recipe.ingredients;
             
             for(var i = 0; i < ingredientArr.length; i++) {
-=======
+
 
          
                 let list = $("<ul>");
@@ -125,8 +124,7 @@ $(document).ready(function () {
                 });
             }
         });
-    });
-});    
+    });  
 
 
 
@@ -155,4 +153,3 @@ $(document).ready(function () {
             modal.style.display = "none";
         }
     }
-});
