@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     var config = {
         apiKey: "AIzaSyD3OPFSy0LLw_-4aiC8lNoOu10C6r6GPZg",
@@ -12,6 +11,7 @@ $(document).ready(function () {
     firebase.initializeApp(config);
 
     const database = firebase.database();
+
     //add searchbar validation input
     var search;
 
@@ -35,20 +35,18 @@ $(document).ready(function () {
     var totSodium = 0.0;
 
     $("#submit").on("click", function test() {
+        //making cards appear
+        $(".container").removeClass("hide")
 
-
-        // var queryURL = "http://cors-proxy.htmldriven.com/?url=http://food2fork.com/api/search?key=2faf058c37cad76f25dc0f61a8700b82&q=asparagus";
-
-        //Add modal here
-
+        //ingredient search
         if (search === "") {
             alert("Please enter a search query");
         } else {
             search = $("#ingredient-input").val();
-            console.log(search);
         }
 
-        var queryURL = "https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=2faf058c37cad76f25dc0f61a8700b82&q=" + search;
+        //queryURL and array to push recipes into 
+        var queryURL = "https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=716be10f3517e512858d539e14920f86&sort=r&page=1&q=" + search;
 
         var recipeIdArray = [];
 
@@ -56,14 +54,14 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            let recipeCount = response.count;
-            var obj = jQuery.parseJSON(response);
 
-            //console.log(obj);
+            let recipeCount = response.count;
+
+            var obj = jQuery.parseJSON(response);
+            //for loop to append first five recipe titles and images to cards
             for (var i = 0; i < 5; i++) {
-                console.log(obj.recipes[i].title);
-                console.log(obj.recipes[i].recipe_id);
                 recipeIdArray.push(obj.recipes[i].recipe_id);
+
                 $("#recipe-name").append(obj.recipes[i].title + "<br>");
                 $("#ingredientList").append("<ul><li><a href='#'>" +obj.recipes[i].title+ "</a></li></ul>");
 
@@ -87,13 +85,9 @@ $(document).ready(function () {
                 $("#recipe-name").html(name);
                 $("#recipe-image").attr("src", obj.recipes[i].image_url);
 
+
             }
-
-            console.log("recipeIdArray:" + recipeIdArray);
         });
-
-        var url = "https://cors-anywhere.herokuapp.com/https://community-food2fork.p.mashape.com/get?key=2faf058c37cad76f25dc0f61a8700b82&rId=5cc4a8";
-
 
         $.ajax({
             url: url,
@@ -184,42 +178,3 @@ $(document).ready(function () {
 
 
 
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    $("#myBtn").on("click",function(){
-        $(".modal-content").append("Calories: " + totCalories+"kcal <br>"); 
-        $(".modal-content").append("Fat(g): " + totFat+"g <br>"); 
-        $(".modal-content").append("Cholesterol: " + totCholesterol+"mg <br>"); 
-        $(".modal-content").append("Carbohydrates: " + totCarbs+"g <br>"); 
-        $(".modal-content").append("Fiber: " + totFiber+"g <br>"); 
-        $(".modal-content").append("Sugar: " + totSugar+"g <br>"); 
-        $(".modal-content").append("Protein: " + totProtein+"g <br>"); 
-        $(".modal-content").append("Iron: " + totIron+"%dv <br>"); 
-        $(".modal-content").append("Sodium: " + totSodium+"mg <br>");
-
-     })
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-//});
