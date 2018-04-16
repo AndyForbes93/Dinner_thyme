@@ -95,7 +95,51 @@ $(document).ready(function () {
             }
         });
 
+        $.ajax({
+            url: url,
+            method: "GET",
 
-    });
+            beforeSend: function (xhr) { xhr.setRequestHeader("X-Mashape-Key", "17STlxvDu0mshiHdSIFa7pNut86Vp1EqzzvjsngIg9bGERUjDu"); },
 
-});
+            
+           
+
+        }).then(function (newresponse) {
+            var obj = jQuery.parseJSON(newresponse);
+
+            let ingredientArr = obj.recipe.ingredients;
+            
+            for(var i = 0; i < ingredientArr.length; i++) {
+
+
+         
+                let list = $("<ul>");
+                let listItem = $("<li>");
+                $(list).append(listItem);
+                listItem.text(ingredientArr[i]);
+                $("#ingredientList").append(list);
+         
+
+                var nutritionURL = "https://api.nutritionix.com/v1_1/search/" + ingredientArr[i] +"?&appId=f35ae0d0&appKey=b148a8cfc03753efc27ea05a30bfd6e9&fields=item_name,nf_calories";
+                //var queryURL = "http://cors-proxy.htmldriven.com/?url=https://api.nutritionix.com/v1_1/search/taco?&appId=f35ae0d0&appKey=80cac78d0905b2d36ca8825470f578d7";
+                
+                let totalCalories = 0;
+                let resultArr = [];
+                $.ajax({
+                    url: nutritionURL,
+                    method: "GET"
+                }).then(function (response) {
+
+                    for(var i = 0; i < response.hits.length; i++) {
+                        if(response.hits[i].fields.nf_calories) {
+                            resultArr.push(response.hits[i].fields.nf_calories);
+                        } else {
+                            console.log(response.hits[i].fields.item_name);
+                        }
+                    }
+                });
+            }
+        });
+    });  
+
+
