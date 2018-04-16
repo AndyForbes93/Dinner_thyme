@@ -15,6 +15,25 @@ $(document).ready(function () {
     //add searchbar validation input
     var search;
 
+    var calories = 0.0;
+    var totCalories = 0.0;
+    var fat = 0.0;
+    var totFat = 0.0;
+    var cholesterol = 0.0;
+    var totCholesterol = 0.0;
+    var carbs = 0.0;
+    var totCarbs = 0.0;
+    var fiber = 0.0;
+    var totFiber = 0.0;
+    var sugar = 0.0;
+    var totSugar = 0.0;
+    var protein = 0.0;
+    var totProtein = 0.0;
+    var iron = 0.0;
+    var totIron = 0.0;
+    var sodium = 0.0;
+    var totSodium = 0.0;
+
     $("#submit").on("click", function test() {
 
 
@@ -45,8 +64,8 @@ $(document).ready(function () {
                 console.log(obj.recipes[i].title);
                 console.log(obj.recipes[i].recipe_id);
                 recipeIdArray.push(obj.recipes[i].recipe_id);
-                $("#recipes").append(obj.recipes[i].title + "<br>");
-                $("#recipes").append("<ul><li><a href='#'>" +obj.recipes[i].title+ "</a></li></ul>");
+                $("#recipe-name").append(obj.recipes[i].title + "<br>");
+                $("#ingredientList").append("<ul><li><a href='#'>" +obj.recipes[i].title+ "</a></li></ul>");
 
             }
 
@@ -54,6 +73,7 @@ $(document).ready(function () {
         });
 
             var url = "https://cors-anywhere.herokuapp.com/https://community-food2fork.p.mashape.com/get?key=2faf058c37cad76f25dc0f61a8700b82&rId=5cc4a8";
+
             console.log(obj);
 
             for (i = 0; i < 5; i++) {
@@ -63,10 +83,6 @@ $(document).ready(function () {
                 //trying to append five cards for search
                 var name = obj.recipes[i].title;
                 var number = obj.recipes[i].recipe_id;
-
-
-
-
                 recipeIdArray.push(obj.recipes[i].recipe_id);
                 $("#recipe-name").html(name);
                 $("#recipe-image").attr("src", obj.recipes[i].image_url);
@@ -111,20 +127,60 @@ $(document).ready(function () {
                 let resultArr = [];
                 $.ajax({
                     url: nutritionURL,
-                    method: "GET"
-                }).then(function (response) {
+                    method: "GET",
+                    success: function (response) {
+                        calories = response.hits[0].fields.nf_calories;
+                        totCalories = Math.floor(calories + totCalories);
+                       // console.log("Total Calories(kcal):" + totCalories);
+                        
+                        fat = response.hits[0].fields.nf_total_fat;
+                        totFat = Math.floor(fat + totFat);
+                       // console.log("Total Fat(g):" + totFat);
 
-                    for(var i = 0; i < response.hits.length; i++) {
-                        if(response.hits[i].fields.nf_calories) {
-                            resultArr.push(response.hits[i].fields.nf_calories);
-                        } else {
-                            console.log(response.hits[i].fields.item_name);
+                        cholesterol = response.hits[0].fields.nf_cholesterol;
+                        totCholesterol = Math.floor(cholesterol + totCholesterol);
+                       // console.log("Total Cholesterol(mg):" + totCholesterol);
+
+                        carbs = response.hits[0].fields.nf_total_carbohydrate;
+                        totCarbs = Math.floor(carbs + totCarbs);
+                       // console.log("Total Carbohydrates(g):" + totCarbs);
+
+                        fiber = response.hits[0].fields.nf_dietary_fiber;
+                        totFiber = Math.floor(fiber + totFiber);
+                      //  console.log("Total Fiber(g):" + totFiber);
+
+                        sugar = response.hits[0].fields.nf_sugars;
+                        totSugar = Math.floor(sugar + totSugar);
+                       // console.log("Total Sugar(g):" + totSugar);
+
+                        protein = response.hits[0].fields.nf_protein;
+                        totProtein = Math.floor(protein + totProtein);
+                      //  console.log("Total Protein(g):" + totProtein);
+
+                        iron = response.hits[0].fields.nf_iron_dv;
+                        totIron = Math.floor(iron + totIron);
+                       // console.log("Total Iron(%dv):" + totIron);
+
+                        sodium = response.hits[0].fields.nf_sodium;
+                        totSodium = Math.floor(sodium + totSodium);
+                       // console.log("Total Sodium(mg):" + totSodium);
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        if (xhr.status == 404) {
+                            console.log(thrownError);
                         }
                     }
-                });
+
+
+
+
+
+                })
             }
         });
-    });  
+    });
+//});    
 
 
 
@@ -133,6 +189,19 @@ $(document).ready(function () {
 
     // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
+
+    $("#myBtn").on("click",function(){
+        $(".modal-content").append("Calories: " + totCalories+"kcal <br>"); 
+        $(".modal-content").append("Fat(g): " + totFat+"g <br>"); 
+        $(".modal-content").append("Cholesterol: " + totCholesterol+"mg <br>"); 
+        $(".modal-content").append("Carbohydrates: " + totCarbs+"g <br>"); 
+        $(".modal-content").append("Fiber: " + totFiber+"g <br>"); 
+        $(".modal-content").append("Sugar: " + totSugar+"g <br>"); 
+        $(".modal-content").append("Protein: " + totProtein+"g <br>"); 
+        $(".modal-content").append("Iron: " + totIron+"%dv <br>"); 
+        $(".modal-content").append("Sodium: " + totSodium+"mg <br>");
+
+     })
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
@@ -153,3 +222,4 @@ $(document).ready(function () {
             modal.style.display = "none";
         }
     }
+//});
